@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int GALLERY_REQUEST_CODE = 105;
 
     private ImageView selectedImage;
+    private Button galleryBtn;
     String currentPhotoPath;
     String TAG = "MainActivity";
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         selectedImage = findViewById(R.id.displayImageView);
         Button cameraBtn = findViewById(R.id.cameraBtn);
-        Button galleryBtn = findViewById(R.id.galleryBtn);
+        galleryBtn = findViewById(R.id.galleryBtn);
 
         cameraBtn.setOnClickListener(view -> getCameraPermissions());
 
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             // Continue only if the File was successfully created
             if (photoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
-                        "com.example.android.fileprovider",
+                        "com.example.android.camera.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
